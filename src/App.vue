@@ -8,8 +8,12 @@
 const handleClick = (e) => {
   const clientX = e.clientX;
   const clientY = e.clientY;
-  alert(`Clicked at:\nToạ độ: (${(clientX / window.innerWidth).toFixed(2)*100}, ${(clientY / window.innerHeight).toFixed(2)*100})`);
-}
+  alert(
+    `Clicked at:\nToạ độ: (${((clientX / window.innerWidth) * 100).toFixed(2)}, ${
+      ((clientY / window.innerHeight) * 100).toFixed(2)
+    })`
+  );
+};
 </script>
 
 <style lang="scss" scoped>
