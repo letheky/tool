@@ -1,30 +1,29 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="about" @click="handleClick">
+    <img class="map" src="/map.png" alt="" />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script setup>
+const handleClick = (e) => {
+  const clientX = e.clientX;
+  const clientY = e.clientY;
+  alert(`Clicked at:\nToạ độ: (${(clientX / window.innerWidth).toFixed(2)*100}, ${(clientY / window.innerHeight).toFixed(2)*100})`);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+</script>
+
+<style lang="scss" scoped>
+.about {
+  background-color: #ffdeac;
+  width: 100vw;
+  height: 100dvh;
+  .map {
+    width: 100%;
+    height: 106%;
+    object-fit: cover;
+    position: absolute;
+    right: -14%;
+    top: -3%;
+  }
 }
 </style>
