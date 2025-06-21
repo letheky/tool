@@ -102,23 +102,22 @@ button {
   background-color: transparent;
 }
 
-
 /* Scrollbar*/
 
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 1.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-19);
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  background-color: #8C4F27;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem;
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background: transparent;
+  -webkit-border-radius: 1rem;
+  border-radius: 1rem;
+  background: #E1D9CF;
 }
 
 /* Setup for leaflet content */
@@ -150,6 +149,66 @@ button {
   align-items: center;
   /* justify-content: center; */
 }
+
+/* Hide the default radio button */
+.radio-item input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Custom radio button circle */
+.radio-circle {
+  width: 6rem;
+  height: 6rem;
+  border: 2px solid #0C341C;
+  border-radius: 50%;
+  margin-right: 12px;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Inner filled circle when selected */
+.radio-circle::after {
+  content: "";
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: #0C341C;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* When radio is checked */
+.radio-item input[type="radio"]:checked+.radio-circle::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Label text */
+.radio-label {
+  font-size: 5rem;
+  color: #0C341C;
+  user-select: none;
+}
+
+/* Focus styles for accessibility */
+.radio-item input[type="radio"]:focus+.radio-circle {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Different color variations */
+.radio-item.green input[type="radio"]:checked+.radio-circle {
+  border-color: #28a745;
+}
+
+.radio-item.green input[type="radio"]:checked+.radio-circle::after {
+  background-color: #28a745;
+}
+
 
 @media screen and (min-width: 480px) {
   html {
