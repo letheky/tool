@@ -1,6 +1,7 @@
 <template>
-  <div class="about" @click="handleClick">
-    <div class="map">
+  <div class="about">
+    <div class="map-container" @click="handleClick">
+      <img src="/k8/map.png" alt="" srcset="">
       <div
         v-for="(dot, index) in clickedDots"
         :key="index"
@@ -20,10 +21,11 @@ import { ref } from "vue";
 const clickedDots = ref([]);
 
 const handleClick = (e) => {
-  const map = document.querySelector(".map");
-  const rect = map.getBoundingClientRect();
+  // Get the image element directly for accurate coordinates
+  const img = document.querySelector(".map-container img");
+  const rect = img.getBoundingClientRect();
   
-  // Calculate position relative to the map container
+  // Calculate position relative to the actual image
   const xRelative = e.clientX - rect.left;
   const yRelative = e.clientY - rect.top;
   
@@ -49,14 +51,18 @@ const handleClick = (e) => {
   display: flex;
   justify-content: end;
 
-  .map {
+  .map-container {
     width: 75%;
     height: 100%;
-    background-image: url("/k8/map.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
+    position: relative; // Add this
+    
+    img {
+      width: 100%; // Changed from 75%
+      height: 100%;
+      object-fit: cover;
+      position: relative; // Changed from absolute
+      // Removed top: -75%
+    }
   }
 
   .red-dot {
