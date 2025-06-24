@@ -58,9 +58,9 @@ const handleClick = (e) => {
     
     img {
       width: 100%; // Changed from 75%
-      height: 100%;
       object-fit: cover;
-      position: relative; // Changed from absolute
+      position: absolute; // Changed from absolute
+      top:-75%;
       // Removed top: -75%
     }
   }
