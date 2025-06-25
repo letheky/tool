@@ -1,14 +1,14 @@
 <template>
   <div class="about">
     <div class="map-container" @click="handleClick">
-      <img src="/k8/map.png" alt="" srcset="">
+      <img src="/k8/map.png" alt="" srcset="" />
       <div
         v-for="(dot, index) in clickedDots"
         :key="index"
         class="red-dot"
         :style="{
-          left: dot.x + '%',
-          top: dot.y + '%',
+          left: dot.x + 'px',
+          top: dot.y + 'px',
         }"
       ></div>
     </div>
@@ -29,16 +29,19 @@ const handleClick = (e) => {
   const xRelative = e.clientX - rect.left;
   const yRelative = e.clientY - rect.top;
   
-  const xPercent = ((xRelative / rect.width) * 100).toFixed(2);
-  const yPercent = ((yRelative / rect.height) * 100).toFixed(2);
-
+  // Use the actual image dimensions from getBoundingClientRect()
+  // This accounts for object-fit: cover which may make the image much larger than container
+  const xPx = xRelative;
+  const yPx = yRelative;
+  
+  console.log(e.clientX, e.clientY, rect, rect.top, yPx);
   // Add the clicked position to the dots array
   clickedDots.value.push({
-    x: parseFloat(xPercent),
-    y: parseFloat(yPercent),
+    x: parseFloat(xPx),
+    y: parseFloat(yPx),
   });
 
-  alert(`Clicked at:\nToạ độ: (${xPercent}, ${yPercent})`);
+  alert(`Clicked at:\nToạ độ: (${xPx}, ${yPx})`);
 };
 </script>
 
@@ -55,25 +58,26 @@ const handleClick = (e) => {
     width: 75%;
     height: 100%;
     position: relative; // Add this
-    
+    top: -75%;
+
     img {
       width: 100%; // Changed from 75%
       object-fit: cover;
       position: absolute; // Changed from absolute
-      top:-75%;
+     
       // Removed top: -75%
+    }
+    .red-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: red;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10;
     }
   }
 
-  .red-dot {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: red;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 10;
-  }
 }
 </style>
