@@ -8,7 +8,7 @@
     <nav>
       <ul>
         <li class="link"><router-link to="/kiosk3">Kiosk 3</router-link></li>
-        <li class="link"><router-link to="/kiosk4">Kiosk 4</router-link></li>
+        <li class="link"><router-link to="/k4.1">Kiosk 4</router-link></li>
         <li class="link"><router-link to="/kiosk8">Kiosk 8</router-link></li>
       </ul>
     </nav>

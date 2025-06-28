@@ -1,48 +1,48 @@
 <template>
   <div class="about">
-    <div class="map-container" @click="handleClick">
-      <img src="/k8/map.png" alt="" srcset="" />
-      <div
-        v-for="(dot, index) in clickedDots"
-        :key="index"
-        class="red-dot"
-        :style="{
-          left: dot.x + 'px',
-          top: dot.y + 'px',
-        }"
-      ></div>
+    <div class="btn-list">
+      <button 
+        v-for="item in menuItems" 
+        :key="item.id"
+        @click="activeComponent = item.component"
+        :class="{ active: activeComponent === item.component }"
+        class="nav-button"
+      >
+        <span class="button-text">{{ item.title }}</span>
+      </button>
+    </div>
+    
+    <div class="content-area">
+      <transition name="fade" mode="out-in">
+        <component :is="activeComponent" v-if="activeComponent" />
+        <div v-else class="welcome-screen">
+          <h1>Khám phá Di sản Thăng Long</h1>
+          <p>Chọn một chủ đề để bắt đầu hành trình khám phá</p>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import K41 from "../components/Kiosk4/K4.1.vue";
+import K42 from "../components/Kiosk4/K4.2.vue";
+import K43 from "../components/Kiosk4/K4.3.vue";
 
-const clickedDots = ref([]);
+const menuItems = [
+  { id: 1, title: "Thăng Long hội tụ tinh hoa", component: K41 },
+  { id: 2, title: "Thăng Long tứ trấn", component: K42 },
+  { id: 3, title: "Chùa đặc biệt", component: K43 }
+];
 
-const handleClick = (e) => {
-  // Get the image element directly for accurate coordinates
-  const img = document.querySelector(".map-container img");
-  const rect = img.getBoundingClientRect();
-  
-  // Calculate position relative to the actual image
-  const xRelative = e.clientX - rect.left;
-  const yRelative = e.clientY - rect.top;
-  
-  // Use the actual image dimensions from getBoundingClientRect()
-  // This accounts for object-fit: cover which may make the image much larger than container
-  const xPx = xRelative;
-  const yPx = yRelative;
-  
-  console.log(e.clientX, e.clientY, rect, rect.top, yPx);
-  // Add the clicked position to the dots array
-  clickedDots.value.push({
-    x: parseFloat(xPx),
-    y: parseFloat(yPx),
-  });
+const activeComponent = ref(null);
 
-  alert(`Clicked at:\nToạ độ: (${xPx}, ${yPx})`);
-};
+// Optional: Set default component
+onMounted(() => {
+  // Uncomment to set a default component
+  // activeComponent.value = 'K41';
+});
 </script>
 
 <style lang="scss" scoped>
@@ -52,32 +52,87 @@ const handleClick = (e) => {
   height: 100dvh;
   position: relative;
   display: flex;
-  justify-content: end;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  .map-container {
-    width: 75%;
+  .btn-list {
+    width: 25%;
     height: 100%;
-    position: relative; // Add this
-    top: -75%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 
-    img {
-      width: 100%; // Changed from 75%
-      object-fit: cover;
-      position: absolute; // Changed from absolute
-     
-      // Removed top: -75%
-    }
-    .red-dot {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background-color: red;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 10;
+    .nav-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 1.5rem 2rem;
+      margin: 0.5rem 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: left;
+
+      .button-text {
+        font-size: 4rem;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      &.active {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateX(10px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+      }
     }
   }
 
+  .content-area {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+
+    .welcome-screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+
+      h1 {
+        font-size: 4rem;
+        color: #333;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      p {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 400px;
+      }
+    }
+  }
 }
 </style>
