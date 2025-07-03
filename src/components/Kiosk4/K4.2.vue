@@ -1,6 +1,6 @@
 <template>
   <div class="map-container" @click="handleClick">
-    <img src="/k4/map.png" alt="" srcset="" />
+    <img src="/k4/map.jpg" alt="" srcset="" />
     <div
       v-for="(dot, index) in clickedDots"
       :key="index"
@@ -32,7 +32,7 @@ const handleClick = (e) => {
   const xPx = xRelative;
   const yPx = yRelative;
 
-  console.log(e.clientX, e.clientY, rect, rect.top, yPx);
+  console.log(xPx, yPx);
   // Add the clicked position to the dots array
   clickedDots.value.push({
     x: parseFloat(xPx),
@@ -48,7 +48,7 @@ const handleClick = (e) => {
   width: 100%;
   height: 100%;
   position: relative; // Add this
-  top: -40%;
+  top: -90%;
 
   img {
     width: 100%; // Changed from 75%

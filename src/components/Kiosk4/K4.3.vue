@@ -25,14 +25,14 @@ const handleClick = (e) => {
 
   // Calculate position relative to the actual image
   const xRelative = e.clientX - rect.left;
-  const yRelative = e.clientY ;
+  const yRelative = e.clientY;
 
   // Use the actual image dimensions from getBoundingClientRect()
   // This accounts for object-fit: cover which may make the image much larger than container
   const xPx = xRelative;
   const yPx = yRelative;
 
-  console.log(e.clientX, e.clientY, rect, rect.top, yPx);
+  console.log(e.clientX, e.clientY, rect, rect.top, xPx, yPx);
   // Add the clicked position to the dots array
   clickedDots.value.push({
     x: parseFloat(xPx),
