@@ -3,19 +3,26 @@
     <p>
       Xin chào bạn đã đến với trung tâm chấm vị trí
       <br />
-      Bạn đang muôn chấm vị trí ở Kiosk
+      Bạn đang muôn chấm vị trí ở 
     </p>
     <nav>
-      <ul>
-        <li class="link"><router-link to="/kiosk3">Kiosk 3</router-link></li>
-        <li class="link"><router-link to="/k4.1">Kiosk 4</router-link></li>
-        <li class="link"><router-link to="/kiosk8">Kiosk 8</router-link></li>
+      <ul style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <li v-for="route in routesWithoutHome" :key="route.name"  class="link">
+          <router-link :to="route.path">{{ route.name }}</router-link>
+        </li>
       </ul>
     </nav>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const routesWithoutHome = router.options.routes.filter(route => route.name !== 'home');
+
+</script>
 
 <style lang="scss" scoped>
 .home {
