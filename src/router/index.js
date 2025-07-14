@@ -26,6 +26,11 @@ const routes = [
     path: "/kiosk8",
     component: () => import("../views/map8.vue"),
   },
+  {
+    name: "Kiosk 10",
+    path: "/kiosk10",
+    component: () => import("../views/map10.vue"),
+  },
 ];
 
 const router = createRouter({
