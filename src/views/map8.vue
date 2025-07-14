@@ -1,19 +1,12 @@
 <template>
   <div class="about" @click="handleClick">
-    <img src="/map.png" alt="" />
+    <MapContainer />
   </div>
 </template>
 
 <script setup>
-const handleClick = (e) => {
-  const clientX = e.clientX;
-  const clientY = e.clientY;
-  alert(
-    `Clicked at:\nToạ độ: (${((clientX / window.innerWidth) * 100).toFixed(
-      2
-    )}, ${((clientY / window.innerHeight) * 100).toFixed(2)})`
-  );
-};
+import MapContainer from "../components/MapContainer.vue";
+
 </script>
 
 <style lang="scss" scoped>
