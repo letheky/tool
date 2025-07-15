@@ -298,7 +298,7 @@ function getPosition(e) {
   const rect = img.getBoundingClientRect();
 
   // Calculate position relative to the actual image
-  const xRelative = e.touches ? e.touches[0].clientX - rect.left : e.clientX - rect.left;
+  const xRelative = e.touches ? e.touches[0].clientX  : e.clientX ;
   const yRelative = e.touches ? e.touches[0].clientY  : e.clientY ;
 
   // Account for current pan and zoom transformations
