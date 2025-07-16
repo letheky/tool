@@ -12,7 +12,7 @@
       @wheel="handleWheel"
     >
       <img :src="mapImgSource" alt="map" class="map-image" draggable="false" />
-      
+
       <!-- Red dot markers for click positions -->
       <div
         v-for="position in clickPositions"
@@ -25,32 +25,7 @@
           transform: `translate(-50%, -50%) scale(${1 / zoomLevel})`,
           transformOrigin: 'center center',
         }"
-      >
-    </div>
-      
-      <!-- <div
-        class="marker-position"
-        v-for="(position, idx) in locationList"
-        :key="idx"
-        data-marker="true"
-        :style="{
-          position: 'absolute',
-          left: `${convertCoordinates(position?.coordinates).x}px`,
-          top: `${convertCoordinates(position?.coordinates).y}px`,
-          transform: `translate(-50%, -50%) scale(${1 / zoomLevel})`,
-          transformOrigin: 'center center',
-        }"
-        @click="onMarkerClick(position)"
-      >
-        <template v-if="position?.translations?.[lang]?.name">
-          <CustomMarker
-            :id="position.id"
-            :thumbnail="position.thumbnail"
-            :name="position.translations[lang].name"
-            :isMarket="true"
-          />
-        </template>
-      </div> -->
+      ></div>
     </div>
 
     <!-- Zoom Controls -->
@@ -281,7 +256,6 @@ const startPan = (e) => {
   const clientX = e.touches ? e.touches[0].clientX : e.clientX;
   const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-
   startMouseX.value = clientX;
   startMouseY.value = clientY;
   startPanX.value = panX.value;
@@ -298,8 +272,8 @@ function getPosition(e) {
   const rect = img.getBoundingClientRect();
 
   // Calculate position relative to the actual image
-  const xRelative = e.touches ? e.touches[0].clientX  : e.clientX ;
-  const yRelative = e.touches ? e.touches[0].clientY  : e.clientY ;
+  const xRelative = e.touches ? e.touches[0].clientX : e.clientX;
+  const yRelative = e.touches ? e.touches[0].clientY : e.clientY;
 
   // Account for current pan and zoom transformations
   // The image is transformed by the map-wrapper, so we need to reverse those transformations
@@ -307,12 +281,12 @@ function getPosition(e) {
   const yPx = (yRelative - panY.value) / zoomLevel.value;
 
   console.log("Bạn vừa bấm vào:", xPx.toFixed(2), yPx.toFixed(2));
-  
+
   // Add click position to the array
   clickPositions.value.push({
     x: xPx,
     y: yPx,
-    id: Date.now() // Use timestamp as unique ID
+    id: Date.now(), // Use timestamp as unique ID
   });
 }
 

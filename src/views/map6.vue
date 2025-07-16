@@ -1,74 +1,27 @@
 <template>
   <div class="about" @click="handleClick">
-    <div class="map">
-      <div
-        v-for="(dot, index) in clickedDots"
-        :key="index"
-        class="red-dot"
-        :style="{
-          left: dot.x + '%',
-          top: dot.y + '%',
-        }"
-      ></div>
+    <div class="container">
+      <MapContainerv2 mapImgSource="/k6/map.png" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-const clickedDots = ref([]);
-
-const handleClick = (e) => {
-  const map = document.querySelector(".map");
-  const rect = map.getBoundingClientRect();
-  
-  // Calculate position relative to the map container
-  const xRelative = e.clientX - rect.left;
-  const yRelative = e.clientY - rect.top;
-  
-  const xPercent = ((xRelative / rect.width) * 100).toFixed(2);
-  const yPercent = ((yRelative / rect.height) * 100).toFixed(2);
-
-  // Add the clicked position to the dots array
-  clickedDots.value.push({
-    x: parseFloat(xPercent),
-    y: parseFloat(yPercent),
-  });
-  console.log(xPercent, yPercent);
-
-  alert(`Clicked at:\nToạ độ: (${xPercent}, ${yPercent})`);
-};
+import MapContainerv2 from "../components/MapContainerv2.vue";
 </script>
 
 <style lang="scss" scoped>
 .about {
-  background-color: #fff;
+  background-color: #ffdeac;
   width: 100vw;
   height: 100dvh;
-  position: relative;
-  display: flex;
-  justify-content: end;
-
-  .map {
+  .container {
     width: 73%;
     height: 100%;
-    background-image: url("/k3/map.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-  }
-
-  .red-dot {
+    object-fit: cover;
     position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: red;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 10;
+    right: 0;
+    top: 0;
   }
 }
 </style>
