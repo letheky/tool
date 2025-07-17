@@ -1,7 +1,9 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHashHistory
+} from "vue-router";
 
-const routes = [
-  {
+const routes = [{
     name: "home",
     path: "/",
     component: () => import("../views/Home.vue"),
@@ -15,6 +17,11 @@ const routes = [
     name: "Kiosk 4",
     path: "/k4.1",
     component: () => import("../views/map4.vue"),
+  },
+  {
+    name: "Kiosk 5",
+    path: "/kiosk5",
+    component: () => import("../views/map5.vue"),
   },
   {
     name: "Kiosk 6",
@@ -34,7 +41,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(
+    import.meta.env.BASE_URL),
   routes,
 });
 export default router;
