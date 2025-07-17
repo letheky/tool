@@ -1,6 +1,6 @@
 <template>
   <div class="map-container" @click="handleClick">
-    <img src="/k4/map.jpg" alt="" srcset="" />
+    <img src="/k4/map-4-2.png" alt="" srcset="" />
     <div
       v-for="(dot, index) in clickedDots"
       :key="index"
