@@ -13,6 +13,6 @@ import MapContainer from "../components/MapContainer.vue";
 .about {
   background-color: #ffdeac;
   width: 100vw;
-  height: auto;
+  height: 100%;
 }
 </style>

@@ -113,10 +113,6 @@ const props = defineProps({
     type: String,
     default: () => "./map.webp",
   },
-  lang: {
-    type: String,
-    required: true,
-  },
   minZoom: {
     type: Number,
     default: 1,
@@ -662,7 +658,7 @@ defineExpose({
 .map-zoom-container {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow: hidden;
   cursor: grab;
 
