@@ -671,7 +671,7 @@ defineExpose({
   width: 100%;
   height: auto;
   transition: transform 0.1s ease-out;
-  will-change: transform;
+  // will-change: transform;
 
   .map-image {
     width: 100%;
