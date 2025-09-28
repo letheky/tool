@@ -52,7 +52,7 @@ const handleClick = (e) => {
   .map {
     width: 75%;
     height: 100%;
-    background-image: url("/k3/map.png");
+    background-image: url("/k3/map.webp");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

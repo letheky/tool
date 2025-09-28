@@ -1,7 +1,7 @@
 <template>
   <div class="about" @click="handleClick">
     <div class="container">
-      <MapContainerv2 mapImgSource="/k6/map.png" />
+      <MapContainerv2 mapImgSource="/k6/map.webp" />
     </div>
   </div>
 </template>
