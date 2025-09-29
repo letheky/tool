@@ -6,8 +6,8 @@
       :key="index"
       class="red-dot"
       :style="{
-        left: dot.x + 'px',
-        top: dot.y + 'px',
+        left: dot.x + '%',
+        top: dot.y + '%',
       }"
     ></div>
   </div>
@@ -22,24 +22,25 @@ const handleClick = (e) => {
   // Get the image element directly for accurate coordinates
   const img = document.querySelector(".map-container img");
   const rect = img.getBoundingClientRect();
+  console.log(rect);
 
   // Calculate position relative to the actual image
-  const xRelative = e.clientX - rect.left;
-  const yRelative = e.clientY - rect.top;
+  const xRelative = (e.clientX - rect.left)/rect.width;
+  const yRelative = (e.clientY - rect.top)/rect.height;
 
   // Use the actual image dimensions from getBoundingClientRect()
   // This accounts for object-fit: cover which may make the image much larger than container
-  const xPx = xRelative;
-  const yPx = yRelative;
+  const xPx = xRelative *100;
+  const yPx = yRelative *100;
 
-  console.log(xPx, yPx);
+  console.log(xPx.toFixed(2), yPx.toFixed(2));
   // Add the clicked position to the dots array
   clickedDots.value.push({
-    x: parseFloat(xPx),
-    y: parseFloat(yPx),
+    x: (xPx).toFixed(2),
+    y: (yPx).toFixed(2),
   });
 
-  alert(`Clicked at:\nToạ độ: (left: ${xPx}, top: ${yPx})`);
+  alert(`Clicked at:\nToạ độ: (left: ${xPx.toFixed(2)} %, top: ${yPx.toFixed(2)} %)`);
 };
 </script>
 
@@ -48,10 +49,11 @@ const handleClick = (e) => {
   width: 100%;
   height: 100%;
   position: relative; // Add this
-  // top: -90%;
+  // top: -85%;
 
   img {
     width: 100%; // Changed from 75%
+    height: 100%;
     object-fit: cover;
     position: absolute; // Changed from absolute
     top: 50%;
