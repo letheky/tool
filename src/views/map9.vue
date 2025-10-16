@@ -28,10 +28,12 @@
 import { ref, onMounted } from "vue";
 import K91 from "../components/Kiosk9/K9.1.vue";
 import K92 from "../components/Kiosk9/K9.2.vue";
+import K93 from "../components/Kiosk9/K9.3.vue";
 
 const menuItems = [
   { id: 1, title: "Quy hoạch khu thành cổ", component: K91 },
   { id: 2, title: "Quy hoạch khu phố Tây", component: K92 },
+  { id: 2, title: "Quy hoạch Hà Nội 1873 - 1888", component: K93 },
 ];
 
 const activeComponent = ref(null);
