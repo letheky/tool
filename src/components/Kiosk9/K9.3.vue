@@ -22,11 +22,10 @@ const handleClick = (e) => {
   // Get the image element directly for accurate coordinates
   const img = document.querySelector(".map-container img");
   const rect = img.getBoundingClientRect();
-  console.log(rect);
 
   // Calculate position relative to the actual image
   const xRelative = (e.clientX - rect.left)/rect.width;
-  const yRelative = (e.clientY - rect.top)/rect.height;
+  const yRelative = (e.clientY - rect.top)/window.innerHeight;
 
   // Use the actual image dimensions from getBoundingClientRect()
   // This accounts for object-fit: cover which may make the image much larger than container
@@ -53,11 +52,11 @@ const handleClick = (e) => {
 
   img {
     width: 100%; // Changed from 75%
-    height: 100%;
+    // height: 100%;
     object-fit: cover;
     position: absolute; // Changed from absolute
-    top: 50%;
-    transform: translateY(-50%);
+    // top: 50%;
+    // transform: translateY(-50%);
 
     // Removed top: -75%
   }
