@@ -41,15 +41,20 @@ const routesWithoutHome = router.options.routes.filter(route => route.name !== '
   }
   nav{
     ul{
+      overflow-y: auto;
+      max-height: 80vh;
       .link{
         border:1px solid #0c341c;
         border-radius: 2rem;
         padding: 1rem 2rem;
-        font-size: 5rem;
+       
         color: #0c341c;
         margin: 1rem;
         text-decoration: none;
         list-style: none;
+        a{
+          font-size: 2rem;
+        }
       }
     }
   }
