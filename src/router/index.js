@@ -43,6 +43,11 @@ const routes = [{
     path: "/kiosk10",
     component: () => import("../views/map10.vue"),
   },
+  {
+    name: "Mật A3 - Tra cứu văn bản",
+    path: "/mat-c3",
+    component: () => import("../views/mat-c3.vue"),
+  },
 ];
 
 const router = createRouter({
